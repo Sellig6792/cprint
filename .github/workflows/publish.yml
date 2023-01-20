@@ -17,7 +17,8 @@ jobs:
           override: true
       - uses: actions-rs/cargo@v1
         with:
-          command: test --color=always
+          command: test
+          args: --all-features --color=always
 
   format_check:
     name: Format Check
