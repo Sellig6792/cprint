@@ -1,6 +1,3 @@
-
-
-
 #[macro_export]
 macro_rules! cprint {
     ($title:expr, $msg:expr, $color:expr) => {
