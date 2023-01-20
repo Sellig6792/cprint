@@ -1,7 +1,14 @@
 [package]
 name = "cprint"
+description = "Cargo like print"
 version = "0.1.0"
 edition = "2021"
+authors = ["Sellig6792 <sellig6792@gmail.com>"]
+homepage = "https://github.com/Sellig6792/cprint"
+repository = "https://github.com/Sellig6792/cprint"
+documentation = "https://docs.rs/cprint"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
 colored = "2.0.0"
