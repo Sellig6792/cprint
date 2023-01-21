@@ -10,5 +10,10 @@ documentation = "https://docs.rs/cprint"
 readme = "README.md"
 license = "MIT"
 
+[lib]
+name = "cprint"
+path = "src/lib.rs"
+
+
 [dependencies]
 colored = "2.0.0"
