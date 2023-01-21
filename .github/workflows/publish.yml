@@ -69,7 +69,7 @@ jobs:
 
   publish:
     name: Publish
-    needs: build
+    needs: package
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
