@@ -5,7 +5,7 @@
 //!
 //! ## Examples
 //! ```rust
-//! use cprint::{cprint, Color};
+//! use cprint::{cprint, Color, Coloration};
 //!
 //! cprint!("Using", "cprint crate!", Color::Green);
 //! ```
