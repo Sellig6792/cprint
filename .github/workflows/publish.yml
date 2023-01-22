@@ -22,7 +22,6 @@ jobs:
 
   format_check:
     name: Format Check
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -36,9 +35,38 @@ jobs:
           command: fmt
           args: -- --check
 
+  clippy_check:
+    name: Clippy Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: clippy
+      - uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --all-features --color=always -- -D warnings
+
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --all-features --color=always
+
   build:
     name: Build
-    needs: format_check
+    needs: [test, format_check, clippy_check, check]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

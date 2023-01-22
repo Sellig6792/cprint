@@ -1,11 +1,10 @@
-#![warn(missing_docs)]
 //! > **Cargo-like printing**
 //!
 //! Easily print beautiful formatted messages like Cargo does.
 //!
 //! ## Examples
 //! ```rust
-//! use cprint::{cprint, Color};
+//! use cprint::{cprint, Color, Coloration};
 //!
 //! cprint!("Using", "cprint crate!", Color::Green);
 //! ```
