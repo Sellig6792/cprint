@@ -2,18 +2,33 @@ use std::fmt::Debug;
 
 use colored::{ColoredString, Colorize};
 
+/// Color enum for use with the [`Coloration`] trait or the [cprint!][crate::cprint] and [cprintln!][crate::cprintln] macros.
+/// With this enum, you can easily choose a color for your text.
+///
+/// # Examples
+/// ```rust
+/// use cprint::Color;
+///
+/// let red = Color::Red;
+/// ```
 #[derive(Debug)]
 pub enum Color {
+    /// Used by Cargo to indicate an error.
     Red,
+    /// Used by Cargo to indicate a success.
     Green,
+    /// Used by Cargo to indicate a warning.
     Yellow,
     Blue,
     Magenta,
+    /// Used by Cargo to indicate a progression.
     Cyan,
     White,
 }
 
+/// Convert a [`Color`] to a [`String`].
 impl From<Color> for String {
+    /// Converts a [`Color`] to a [`String`].
     fn from(color: Color) -> Self {
         match color {
             Color::Red => "red".to_string(),
@@ -27,10 +42,19 @@ impl From<Color> for String {
     }
 }
 
+/// Trait for coloration of text. [`Coloration<ColorType>`] is the type of the color you want to use. It can be a [`Color`] or a [`String`].
 pub trait Coloration<ColorType>
 where
     ColorType: Into<Color>,
 {
+    /// Apply a color and boldness to a string.
+    /// # Examples
+    /// ```rust
+    /// use cprint::{Color, Coloration};
+    ///
+    /// let string = "An amazing string in green and bold".apply_color(Color::Green);
+    /// println!("{}", string);
+    /// ```
     fn apply_color(&self, color: ColorType) -> ColoredString;
 }
 
