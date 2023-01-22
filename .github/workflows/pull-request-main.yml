@@ -1,0 +1,80 @@
+name: Check PR - main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  jobs:
+    test:
+      name: Test
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            override: true
+        - uses: actions-rs/cargo@v1
+          with:
+            command: test
+            args: --all-features --color=always
+
+    format_check:
+      name: Format Check
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            override: true
+            components: rustfmt
+        - uses: actions-rs/cargo@v1
+          with:
+            command: fmt
+            args: -- --check
+
+    clippy_check:
+      name: Clippy Check
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            override: true
+            components: clippy
+        - uses: actions-rs/cargo@v1
+          with:
+            command: clippy
+            args: --all-features --color=always -- -D warnings
+
+    check:
+      name: Check
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            override: true
+        - uses: actions-rs/cargo@v1
+          with:
+            command: check
+            args: --all-features --color=always
+
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            override: true
+        - uses: actions-rs/cargo@v1
+          with:
+            command: build
+            args: --release --color=always
