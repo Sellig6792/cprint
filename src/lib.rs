@@ -1,4 +1,3 @@
-#![warn(missing_docs)]
 //! > **Cargo-like printing**
 //!
 //! Easily print beautiful formatted messages like Cargo does.
