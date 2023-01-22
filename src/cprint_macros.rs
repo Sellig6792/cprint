@@ -2,7 +2,7 @@
 /// The end of the title is padded with spaces to make it 12 characters long.
 /// # Examples
 /// ```rust
-/// use cprint::{cprint, Color};
+/// use cprint::{cprint, Color, Coloration};
 ///
 /// cprint!("Compiling", "main.rs", Color::Green);
 /// ```
