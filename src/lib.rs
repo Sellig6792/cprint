@@ -9,8 +9,12 @@
 //! cprint!("Using", "cprint crate!", Color::Green);
 //! ```
 
-mod color;
-pub use color::{Color, Coloration};
+#[cfg(feature = "coloration")]
+mod coloration;
+
+#[cfg(feature = "coloration")]
+pub use coloration::{Color, Coloration};
+
 
 #[cfg(feature = "cprint")]
 mod cprint_macros;
