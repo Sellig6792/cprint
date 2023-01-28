@@ -34,7 +34,7 @@ jobs:
         - uses: actions-rs/cargo@v1
           with:
             command: fmt
-            args: -- --check
+            args: -- --check --color=always
 
     clippy_check:
       name: Clippy Check
@@ -77,4 +77,4 @@ jobs:
         - uses: actions-rs/cargo@v1
           with:
             command: build
-            args: --release --color=always
+            args: --all-features --release --color=always
