@@ -33,7 +33,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
-          args: -- --check
+          args: -- --check --color=always
 
   clippy_check:
     name: Clippy Check
@@ -77,7 +77,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --release --color=always
+          args: --all-features --release --color=always
 
 
   package:
@@ -93,7 +93,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: package
-          args: --color=always
+          args: --all-features --color=always
 
   publish:
     name: Publish
@@ -108,4 +108,4 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: publish
-          args: --token ${{ secrets.CRATES_IO_TOKEN }} --color=always
+          args: --all-features --token ${{ secrets.CRATES_IO_TOKEN }} --color=always
