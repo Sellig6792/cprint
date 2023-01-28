@@ -15,7 +15,6 @@ mod coloration;
 #[cfg(feature = "coloration")]
 pub use coloration::{Color, Coloration};
 
-
 #[cfg(feature = "cprint")]
 mod cprint_macros;
 
