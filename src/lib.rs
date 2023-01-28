@@ -10,9 +10,10 @@
 //! ```
 
 mod color;
-mod cprint_macros;
-
 pub use color::{Color, Coloration};
+
+#[cfg(feature = "cprint")]
+mod cprint_macros;
 
 #[cfg(feature = "ceprint")]
 mod ceprint_macros;
