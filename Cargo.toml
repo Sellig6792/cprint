@@ -14,6 +14,8 @@ license = "MIT"
 name = "cprint"
 path = "src/lib.rs"
 
+[features]
+ceprint = []
 
 [dependencies]
 colored = "2.0.0"
