@@ -16,8 +16,9 @@ path = "src/lib.rs"
 
 [features]
 default = ["cprint"]
-cprint = []
-ceprint = []
+coloration = []
+cprint = ["coloration"]
+ceprint = ["coloration"]
 
 [dependencies]
 colored = "2.0.0"
