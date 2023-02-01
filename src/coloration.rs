@@ -77,9 +77,9 @@ where
 }
 
 pub fn colorize_string<FS, ColorType>(string: &FS, color: ColorType) -> ColoredString
-    where
-        FS: AsRef<str> + ?Sized,
-        ColorType: Into<Color>,
+where
+    FS: AsRef<str> + ?Sized,
+    ColorType: Into<Color>,
 {
     string.apply_color(color)
 }
