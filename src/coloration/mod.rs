@@ -2,7 +2,7 @@ use std::fmt::Debug;
 
 use colored::{ColoredString, Colorize};
 
-/// Color enum for use with the [`Coloration`] trait or the [cprint!][crate::cprint] and [cprintln!][crate::cprintln] macros.
+/// Color enum for use with the [`Coloration`] trait or the [cprint!][crate::cprint!] and [cprintln!][crate::cprintln!] macros.
 /// With this enum, you can easily choose a color for your text.
 ///
 /// # Examples
@@ -59,9 +59,9 @@ where
 }
 
 impl<FS, ColorType> Coloration<ColorType> for FS
-where
-    FS: AsRef<str> + ?Sized,
-    ColorType: Into<Color>,
+    where
+        FS: AsRef<str> + ?Sized,
+        ColorType: Into<Color>,
 {
     fn apply_color(&self, color: ColorType) -> ColoredString {
         match color.into() {
@@ -77,9 +77,9 @@ where
 }
 
 pub fn colorize_string<FS, ColorType>(string: &FS, color: ColorType) -> ColoredString
-where
-    FS: AsRef<str> + ?Sized,
-    ColorType: Into<Color>,
+    where
+        FS: AsRef<str> + ?Sized,
+        ColorType: Into<Color>,
 {
     string.apply_color(color)
 }
