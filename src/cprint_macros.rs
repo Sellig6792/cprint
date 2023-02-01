@@ -23,7 +23,7 @@ macro_rules! cprint {
 #[macro_export]
 macro_rules! cprintln {
     ($title:expr, $msg:expr, $color:expr) => {
-        cprint!($title, $msg, $color);
+        $crate::cprint!($title, $msg, $color);
         println!();
     };
 }
