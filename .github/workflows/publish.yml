@@ -18,7 +18,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --all-features --color=always
+          args: --workspace --all-features --color=always
 
   format_check:
     name: Format Check
@@ -48,7 +48,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --all-features --color=always -- -D warnings
+          args: --workspace --all-features --color=always -- -D warnings
 
   check:
     name: Check
@@ -62,7 +62,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: check
-          args: --all-features --color=always
+          args: --workspace --all-features --color=always
 
   build:
     name: Build
@@ -77,7 +77,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --all-features --release --color=always
+          args: --workspace --all-features --color=always
 
 
   package:
@@ -93,7 +93,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: package
-          args: --all-features --color=always
+          args: --workspace --all-features --color=always
 
   publish:
     name: Publish
