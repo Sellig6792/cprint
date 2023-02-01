@@ -8,19 +8,26 @@
 /// ```
 #[macro_export]
 macro_rules! ceprint {
-    ($msg:expr) => {
+    ($msg:expr) => {{
+        use $crate::coloration::{colorize_string, Color::Red};
+
         print!(
             "{} {}",
-            format!("{}{}", " ".repeat(12 - "Error".len()), "Error").apply_color(Color::Red),
+            format!(
+                "{}{}",
+                " ".repeat(12 - "Error".len()),
+                colorize_string("Error", Red)
+            ),
             $msg
         );
-    };
+    }};
 }
 
 /// Same as [`ceprint!`] but with a newline at the end.
 #[macro_export]
 macro_rules! ceprintln {
-    ($title:expr, $msg:expr) => {
-        ceprintln!($title, $msg, Color::Red);
+    ($msg:expr) => {
+        $crate::ceprint!($msg);
+        println!();
     };
 }
