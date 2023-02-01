@@ -8,13 +8,15 @@
 /// ```
 #[macro_export]
 macro_rules! cprint {
-    ($title:expr, $msg:expr, $color:expr) => {
+    ($title:expr, $msg:expr, $color:expr) => {{
+        use $crate::coloration::Coloration;
+
         print!(
             "{} {}",
             format!("{}{}", " ".repeat(12 - $title.len()), $title).apply_color($color),
             $msg
         );
-    };
+    }};
 }
 
 /// Same as [`cprint!`] but with a newline at the end.
