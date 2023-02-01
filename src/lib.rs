@@ -10,10 +10,10 @@
 //! ```
 
 #[cfg(feature = "coloration")]
-mod coloration;
+pub use coloration::{Color, Coloration};
 
 #[cfg(feature = "coloration")]
-pub use coloration::{Color, Coloration};
+pub mod coloration;
 
 #[cfg(feature = "cprint")]
 mod cprint_macros;
