@@ -4,7 +4,7 @@
 //!
 //! ## Examples
 //! ```rust
-//! use cprint::{cprint, Color, Coloration};
+//! use cprint::{cprint, Color};
 //!
 //! cprint!("Using", "cprint crate!", Color::Green);
 //! ```
@@ -16,7 +16,7 @@ pub use coloration::{Color, Coloration};
 pub mod coloration;
 
 #[cfg(feature = "cprint")]
-mod cprint_macros;
+mod cprint;
 
 #[cfg(feature = "ceprint")]
-mod ceprint_macros;
+mod ceprint;
