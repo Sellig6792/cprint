@@ -59,9 +59,9 @@ where
 }
 
 impl<FS, ColorType> Coloration<ColorType> for FS
-    where
-        FS: AsRef<str> + ?Sized,
-        ColorType: Into<Color>,
+where
+    FS: AsRef<str> + ?Sized,
+    ColorType: Into<Color>,
 {
     fn apply_color(&self, color: ColorType) -> ColoredString {
         match color.into() {
@@ -77,9 +77,9 @@ impl<FS, ColorType> Coloration<ColorType> for FS
 }
 
 pub fn colorize_string<FS, ColorType>(string: &FS, color: ColorType) -> ColoredString
-    where
-        FS: AsRef<str> + ?Sized,
-        ColorType: Into<Color>,
+where
+    FS: AsRef<str> + ?Sized,
+    ColorType: Into<Color>,
 {
     string.apply_color(color)
 }
