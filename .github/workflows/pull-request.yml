@@ -1,10 +1,9 @@
-name: Check PR - develop
+name: Check PR
 
 on:
   pull_request:
     branches:
-      - develop
-
+      - main
 
 jobs:
   test:
@@ -20,7 +19,34 @@ jobs:
         with:
           command: test
           args: --workspace --all-features --color=always
-
+  format_check:
+    name: Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: -- --check --color=always
+  clippy_check:
+    name: Clippy Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: clippy
+      - uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --workspace --all-features --color=always -- -D warnings
   check:
     name: Check
     runs-on: ubuntu-latest
@@ -34,7 +60,6 @@ jobs:
         with:
           command: check
           args: --workspace --all-features --color=always
-
   build:
     name: Build
     runs-on: ubuntu-latest
