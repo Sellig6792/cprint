@@ -9,10 +9,13 @@
 #[macro_export]
 macro_rules! cprint {
     ($title:expr, $msg:expr, $color:expr) => {{
-        use $crate::coloration::Coloration;
         use std::io::Write;
+        use $crate::coloration::Coloration;
 
-        let white_spaces = $title.chars().filter(|c| c.is_whitespace()).collect::<String>();
+        let white_spaces = $title
+            .chars()
+            .filter(|c| c.is_whitespace())
+            .collect::<String>();
         let title = $title.trim_start();
 
         print!(
