@@ -1,9 +1,9 @@
 [package]
 name = "cprint"
 description = "Cargo-like print"
-version = "0.4.1"
+version = "0.5.0"
 edition = "2021"
-authors = ["Sellig6792 <sellig6792@gmail.com>"]
+authors = ["Gilles Meunier <sellig6792@gmail.com>"]
 homepage = "https://github.com/Sellig6792/cprint"
 repository = "https://github.com/Sellig6792/cprint"
 documentation = "https://docs.rs/cprint"
