@@ -11,14 +11,19 @@ macro_rules! ceprint {
     ($msg:expr) => {{
         use $crate::coloration::{colorize_string, Color::Red};
 
+
+        let white_spaces = $msg.chars().filter(|c| c.is_whitespace()).collect::<String>();
+        let msg = $msg.trim_start();
+
         print!(
-            "{} {}",
+            "{}{} {}",
+            white_spaces,
             format!(
                 "{}{}",
                 " ".repeat(12 - "Error".len()),
                 colorize_string("Error", Red)
             ),
-            $msg
+            msg
         );
     }};
 }
@@ -30,4 +35,12 @@ macro_rules! ceprintln {
         $crate::ceprint!($msg);
         println!();
     };
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn ceprint_macro() {
+        ceprintln!("Failed to compile");
+    }
 }

@@ -10,10 +10,15 @@
 macro_rules! cprint {
     ($title:expr, $msg:expr, $color:expr) => {{
         use $crate::coloration::Coloration;
+        use std::io::Write;
+
+        let white_spaces = $title.chars().filter(|c| c.is_whitespace()).collect::<String>();
+        let title = $title.trim_start();
 
         print!(
-            "{} {}",
-            format!("{}{}", " ".repeat(12 - $title.len()), $title).apply_color($color),
+            "{}{} {}",
+            white_spaces,
+            format!("{}{}", " ".repeat(12 - title.len()), title).apply_color($color),
             $msg
         );
     }};
