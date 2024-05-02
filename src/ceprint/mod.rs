@@ -11,9 +11,18 @@ macro_rules! ceprint {
     ($msg:expr) => {{
         use $crate::coloration::{colorize_string, Color::Red};
 
+        let mut still_at_start = true;
+
         let white_spaces = $msg
             .chars()
-            .filter(|c| c.is_whitespace())
+            .filter_map(|c| {
+                if c.is_whitespace() && still_at_start {
+                    Some(c)
+                } else {
+                    still_at_start = false;
+                    None
+                }
+            })
             .collect::<String>();
         let msg = $msg.trim_start();
 
