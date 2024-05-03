@@ -8,23 +8,57 @@
 /// ```
 #[macro_export]
 macro_rules! ceprint {
+    ($title:expr, $msg:expr => $color:ident) => {{
+        eprint!("{}", $crate::cformat!($title, $msg => $color))
+    }};
+
+    ($title:expr, $msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        eprint!("{}", $crate::cformat!($title, $msg => ($r, $g, $b)))
+    }};
+
+    ($title:expr, $msg:expr) => {{
+        eprint!("{}", $crate::cformat!($title, $msg => Red))
+    }};
+
+    ($msg:expr => $color:ident) => {{
+        eprint!("{}",$crate::cformat!($msg => $color))
+    }};
+
+    ($msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        eprint!("{}",$crate::cformat!($msg => ($r, $g, $b)))
+    }};
+
     ($msg:expr) => {{
-        use $crate::coloration::{colorize_string, Color::Red};
-
-        let white_spaces = $crate::_get_white_spaces_at_start!($msg);
-        let msg = $msg.trim_start();
-
-        eprint!("{}{}", white_spaces, $crate::cformat!("Error", msg, Red));
+        eprint!("{}",$crate::cformat!($msg => Red))
     }};
 }
 
 /// Same as [`ceprint!`] but with a newline at the end.
 #[macro_export]
 macro_rules! ceprintln {
-    ($msg:expr) => {
-        $crate::ceprint!($msg);
-        eprintln!();
-    };
+    ($title:expr, $msg:expr => $color:ident) => {{
+        eprintln!("{}", $crate::cformat!($title, $msg => $color))
+    }};
+
+    ($title:expr, $msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        eprintln!("{}", $crate::cformat!($title, $msg => ($r, $g, $b)))
+    }};
+
+    ($title:expr, $msg:expr) => {{
+        eprintln!("{}", $crate::cformat!($title, $msg => Red))
+    }};
+
+    ($msg:expr => $color:ident) => {{
+        eprintln!("{}", $crate::cformat!($msg => $color))
+    }};
+
+    ($msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        eprintln!("{}", $crate::cformat!($msg => ($r, $g, $b)))
+    }};
+
+    ($msg:expr) => {{
+        eprintln!("{}", $crate::cformat!($msg => Red))
+    }};
 }
 
 #[cfg(test)]

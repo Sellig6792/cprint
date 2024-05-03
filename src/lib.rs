@@ -6,7 +6,8 @@
 //! ```rust
 //! use cprint::{cprint, Color};
 //!
-//! cprint!("Using", "cprint crate!", Color::Green);
+//! cprint!("Using", "cprint crate!" => Green); // "=> Green" is optional, it's the default color
+//! cprint!("Using cprint crate!");
 //! ```
 
 pub use coloration::{Color, Coloration};
