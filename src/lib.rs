@@ -20,3 +20,6 @@ mod cprint;
 
 #[cfg(feature = "ceprint")]
 mod ceprint;
+
+#[cfg(feature = "cformat")]
+mod cformat;
