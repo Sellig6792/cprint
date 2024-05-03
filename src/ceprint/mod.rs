@@ -11,31 +11,10 @@ macro_rules! ceprint {
     ($msg:expr) => {{
         use $crate::coloration::{colorize_string, Color::Red};
 
-        let mut still_at_start = true;
-
-        let white_spaces = $msg
-            .chars()
-            .filter_map(|c| {
-                if c.is_whitespace() && still_at_start {
-                    Some(c)
-                } else {
-                    still_at_start = false;
-                    None
-                }
-            })
-            .collect::<String>();
+        let white_spaces = $crate::_get_white_spaces_at_start!($msg);
         let msg = $msg.trim_start();
 
-        print!(
-            "{}{} {}",
-            white_spaces,
-            format!(
-                "{}{}",
-                " ".repeat(12 - "Error".len()),
-                colorize_string("Error", Red)
-            ),
-            msg
-        );
+        print!("{}{}", white_spaces, $crate::cformat!("Error", msg, Red));
     }};
 }
 

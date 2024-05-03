@@ -19,7 +19,7 @@ default = ["cprint"]
 coloration = []
 cformat = ["coloration"]
 cprint = ["coloration", "cformat"]
-ceprint = ["coloration"]
+ceprint = ["coloration", "cformat"]
 
 [package.metadata.docs.rs]
 all-features = true
