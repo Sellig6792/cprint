@@ -23,3 +23,6 @@ mod ceprint;
 
 #[cfg(feature = "cformat")]
 mod cformat;
+
+#[cfg(any(feature = "cprint", feature = "ceprint", feature = "cformat"))]
+mod utils;

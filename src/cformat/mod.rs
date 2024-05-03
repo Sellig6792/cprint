@@ -12,19 +12,7 @@ macro_rules! cformat {
     ($title:expr, $msg:expr, $color:expr) => {{
         use $crate::coloration::Coloration;
 
-        let mut still_at_start = true;
-
-        let white_spaces = $title
-            .chars()
-            .filter_map(|c| {
-                if c.is_whitespace() && still_at_start {
-                    Some(c)
-                } else {
-                    still_at_start = false;
-                    None
-                }
-            })
-            .collect::<String>();
+        let white_spaces = $crate::_get_white_spaces_at_start!($title);
         let title = $title.trim_start();
 
         format!(
