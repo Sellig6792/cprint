@@ -36,7 +36,6 @@ macro_rules! cformat {
     }};
 }
 
-
 #[cfg(test)]
 mod tests {
     use crate::{Color, Coloration};
@@ -51,14 +50,22 @@ mod tests {
     #[test]
     fn test_cformat_with_spaces() {
         let string = cformat!("Pre Build", "Parsing `main.rs`...", Color::Green);
-        let right = format!("{} {}", "   Pre Build".apply_color(Color::Green), "Parsing `main.rs`...");
+        let right = format!(
+            "{} {}",
+            "   Pre Build".apply_color(Color::Green),
+            "Parsing `main.rs`..."
+        );
         assert_eq!(string, right);
     }
 
     #[test]
     fn test_cformat_with_carry_return_at_start() {
         let string = cformat!("\rPre Build", "Parsing `main.rs`...", Color::Green);
-        let right = format!("\r{} {}", "   Pre Build".apply_color(Color::Green), "Parsing `main.rs`...");
+        let right = format!(
+            "\r{} {}",
+            "   Pre Build".apply_color(Color::Green),
+            "Parsing `main.rs`..."
+        );
         assert_eq!(string, right);
     }
 }
