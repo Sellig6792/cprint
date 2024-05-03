@@ -4,20 +4,59 @@
 /// ```rust
 /// use cprint::{cprint, Color, Coloration};
 ///
-/// cprint!("Compiling", "main.rs", Color::Green);
+/// cprint!("Compiling", "main.rs" => Green);
 /// ```
 #[macro_export]
 macro_rules! cprint {
-    ($title:expr, $msg:expr, $color:expr) => {{
-        print!("{}", $crate::cformat!($title, $msg, $color));
+    ($title:expr, $msg:expr => $color:ident) => {{
+        print!("{}", $crate::cformat!($title, $msg => $color))
+    }};
+
+    ($title:expr, $msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        print!("{}", $crate::cformat!($title, $msg => ($r, $g, $b)))
+    }};
+
+    ($title:expr, $msg:expr) => {{
+        print!("{}", $crate::cformat!($title, $msg => Green))
+    }};
+
+    ($msg:expr => $color:ident) => {{
+        print!("{}",$crate::cformat!($msg => $color))
+    }};
+
+    ($msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        print!("{}",$crate::cformat!($msg => ($r, $g, $b)))
+    }};
+
+    ($msg:expr) => {{
+        print!("{}",$crate::cformat!($msg => Green))
     }};
 }
 
 /// Same as [`cprint!`] but with a newline at the end.
 #[macro_export]
 macro_rules! cprintln {
-    ($title:expr, $msg:expr, $color:expr) => {
-        $crate::cprint!($title, $msg, $color);
-        println!();
-    };
+    ($title:expr, $msg:expr => $color:ident) => {{
+        println!("{}", $crate::cformat!($title, $msg => $color))
+    }};
+
+    ($title:expr, $msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        println!("{}", $crate::cformat!($title, $msg => ($r, $g, $b)))
+    }};
+
+    ($title:expr, $msg:expr) => {{
+        println!("{}", $crate::cformat!($title, $msg => Green))
+    }};
+
+    ($msg:expr => $color:ident) => {{
+        println!("{}", $crate::cformat!($msg => $color))
+    }};
+
+    ($msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        println!("{}", $crate::cformat!($msg => ($r, $g, $b)))
+    }};
+
+    ($msg:expr) => {{
+        println!("{}", $crate::cformat!($msg => Green))
+    }};
 }

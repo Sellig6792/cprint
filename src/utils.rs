@@ -16,3 +16,19 @@ macro_rules! _get_white_spaces_at_start {
             .collect::<String>()
     }};
 }
+
+#[macro_export]
+macro_rules! _get_title_and_message {
+    ($text:expr) => {{
+        let white_spaces = $crate::_get_white_spaces_at_start!($text);
+        let title = white_spaces.clone()
+            + &$text
+                .trim_start_matches(&white_spaces)
+                .chars()
+                .take_while(|c| !c.is_whitespace())
+                .collect::<String>();
+        let message = &$text.trim_start_matches(&title)[1..];
+
+        (title, message)
+    }};
+}
