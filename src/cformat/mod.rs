@@ -18,7 +18,7 @@ macro_rules! cformat {
         format!(
             "{}{} {}",
             white_spaces,
-            format!("{}{}", " ".repeat(12 - title.len()), title).apply_color($color),
+            format!("{}{}", " ".repeat(12 - title.len()), title).as_colored_title($color),
             $msg
         )
     }};
@@ -31,7 +31,11 @@ mod tests {
     #[test]
     fn test_cformat() {
         let string = cformat!("Compiling", "main.rs", Color::Green);
-        let right = format!("{} {}", "   Compiling".apply_color(Color::Green), "main.rs");
+        let right = format!(
+            "{} {}",
+            "   Compiling".as_colored_title(Color::Green),
+            "main.rs"
+        );
         assert_eq!(string, right);
     }
 
@@ -40,7 +44,7 @@ mod tests {
         let string = cformat!("Pre Build", "Parsing `main.rs`...", Color::Green);
         let right = format!(
             "{} {}",
-            "   Pre Build".apply_color(Color::Green),
+            "   Pre Build".as_colored_title(Color::Green),
             "Parsing `main.rs`..."
         );
         assert_eq!(string, right);
@@ -51,7 +55,7 @@ mod tests {
         let string = cformat!("\rPre Build", "Parsing `main.rs`...", Color::Green);
         let right = format!(
             "\r{} {}",
-            "   Pre Build".apply_color(Color::Green),
+            "   Pre Build".as_colored_title(Color::Green),
             "Parsing `main.rs`..."
         );
         assert_eq!(string, right);
