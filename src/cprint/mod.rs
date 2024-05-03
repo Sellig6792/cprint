@@ -9,21 +9,7 @@
 #[macro_export]
 macro_rules! cprint {
     ($title:expr, $msg:expr, $color:expr) => {{
-        use std::io::Write;
-        use $crate::coloration::Coloration;
-
-        let white_spaces = $title
-            .chars()
-            .filter(|c| c.is_whitespace())
-            .collect::<String>();
-        let title = $title.trim_start();
-
-        print!(
-            "{}{} {}",
-            white_spaces,
-            format!("{}{}", " ".repeat(12 - title.len()), title).apply_color($color),
-            $msg
-        );
+        print!("{}", $crate::cformat!($title, $msg, $color));
     }};
 }
 

@@ -17,9 +17,9 @@ path = "src/lib.rs"
 [features]
 default = ["cprint"]
 coloration = []
-cprint = ["coloration"]
-ceprint = ["coloration"]
 cformat = ["coloration"]
+cprint = ["coloration", "cformat"]
+ceprint = ["coloration"]
 
 [package.metadata.docs.rs]
 all-features = true
