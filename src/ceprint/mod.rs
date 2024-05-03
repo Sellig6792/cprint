@@ -14,7 +14,7 @@ macro_rules! ceprint {
         let white_spaces = $crate::_get_white_spaces_at_start!($msg);
         let msg = $msg.trim_start();
 
-        print!("{}{}", white_spaces, $crate::cformat!("Error", msg, Red));
+        eprint!("{}{}", white_spaces, $crate::cformat!("Error", msg, Red));
     }};
 }
 
@@ -23,7 +23,7 @@ macro_rules! ceprint {
 macro_rules! ceprintln {
     ($msg:expr) => {
         $crate::ceprint!($msg);
-        println!();
+        eprintln!();
     };
 }
 
