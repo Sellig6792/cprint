@@ -12,7 +12,6 @@
 pub use coloration::{Color, Coloration};
 
 pub mod coloration;
-
 #[cfg(feature = "cprint")]
 mod cprint;
 
