@@ -10,10 +10,12 @@
 #[macro_export]
 macro_rules! cprint {
     ($title:expr, $msg:expr => $color:ident) => {{
+        $crate::Color::$color;
         print!("{}", $crate::cformat!($title, $msg => $color))
     }};
 
     ($title:expr, $msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        $crate::Color::TrueColor { r: $r, g: $g, b: $b };
         print!("{}", $crate::cformat!($title, $msg => ($r, $g, $b)))
     }};
 
@@ -22,10 +24,12 @@ macro_rules! cprint {
     }};
 
     ($msg:expr => $color:ident) => {{
+        $crate::Color::$color;
         print!("{}",$crate::cformat!($msg => $color))
     }};
 
     ($msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        $crate::Color::TrueColor { r: $r, g: $g, b: $b };
         print!("{}",$crate::cformat!($msg => ($r, $g, $b)))
     }};
 
@@ -38,10 +42,12 @@ macro_rules! cprint {
 #[macro_export]
 macro_rules! cprintln {
     ($title:expr, $msg:expr => $color:ident) => {{
+        $crate::Color::$color;
         println!("{}", $crate::cformat!($title, $msg => $color))
     }};
 
     ($title:expr, $msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        $crate::Color::TrueColor { r: $r, g: $g, b: $b };
         println!("{}", $crate::cformat!($title, $msg => ($r, $g, $b)))
     }};
 
@@ -50,10 +56,12 @@ macro_rules! cprintln {
     }};
 
     ($msg:expr => $color:ident) => {{
+        $crate::Color::$color;
         println!("{}", $crate::cformat!($msg => $color))
     }};
 
     ($msg:expr => ($r:expr, $g:expr, $b:expr)) => {{
+        $crate::Color::TrueColor { r: $r, g: $g, b: $b };
         println!("{}", $crate::cformat!($msg => ($r, $g, $b)))
     }};
 
