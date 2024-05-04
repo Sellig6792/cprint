@@ -18,7 +18,6 @@
 //! - [`ceprint!`] and [`ceprintln!`] for printing to stderr.
 //! - [`cformat!`] for formatting a string.
 
-
 pub use coloration::{Color, Coloration};
 
 #[doc(hidden)]

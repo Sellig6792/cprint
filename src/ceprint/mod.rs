@@ -73,7 +73,32 @@ macro_rules! ceprintln {
 #[cfg(test)]
 mod tests {
     #[test]
-    fn ceprint_macro() {
-        ceprintln!("Failed to compile");
+    fn ceprint_title_message_color() {
+        ceprint!("Failed", "to compile" => Red);
+    }
+
+    #[test]
+    fn ceprint_title_message_rgb() {
+        ceprint!("Failed", "to compile main.rs" => (255, 0, 0));
+    }
+
+    #[test]
+    fn ceprint_title_message() {
+        ceprint!("Failed", "to compile main.rs");
+    }
+
+    #[test]
+    fn ceprint_message_color() {
+        ceprint!("Failed to compile" => Red);
+    }
+
+    #[test]
+    fn ceprint_message_rgb() {
+        ceprint!("Failed to compile" => (255, 0, 0));
+    }
+
+    #[test]
+    fn ceprint_message() {
+        ceprint!("Failed to compile");
     }
 }
