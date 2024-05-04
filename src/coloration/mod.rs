@@ -1,5 +1,5 @@
-pub use colored::Color;
 use colored::{ColoredString, Colorize};
+pub use colored::Color;
 
 /// Trait for coloration of text. [`Coloration<ColorType>`] is the type of the color you want to use. It can be a [`Color`] or a [`String`].
 pub trait Coloration<ColorType>
@@ -25,14 +25,6 @@ where
     fn as_colored_title(&self, color: ColorType) -> ColoredString {
         self.as_ref().color(color.into()).bold()
     }
-}
-
-pub fn colorize_string<FS, ColorType>(string: &FS, color: ColorType) -> ColoredString
-where
-    FS: AsRef<str> + ?Sized,
-    ColorType: Into<Color>,
-{
-    string.as_colored_title(color)
 }
 
 #[cfg(test)]

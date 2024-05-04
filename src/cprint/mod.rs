@@ -1,4 +1,5 @@
-/// Print a message like Cargo does. The first argument is the title of the message, the second argument is the message itself and the third argument is the color of the title.
+/// Print a message like Cargo does. If you pass only one string, the first word is the title and the rest is the message. If you pass two strings the first one is the title and the second one is the message.
+/// You can specify the color of the title with a predefined color from the [`colored::Color`] enum or with RGB values `(r, g, b)`. To specify the color use `=>` after the strings.
 /// The end of the title is padded with spaces to make it 12 characters long.
 /// # Examples
 /// ```rust

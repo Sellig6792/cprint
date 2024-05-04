@@ -1,3 +1,4 @@
+#[doc(hidden)]
 #[macro_export]
 macro_rules! _get_white_spaces_at_start {
     ($text:expr) => {{
@@ -17,6 +18,7 @@ macro_rules! _get_white_spaces_at_start {
     }};
 }
 
+#[doc(hidden)]
 #[macro_export]
 macro_rules! _get_title_and_message {
     ($text:expr) => {{
