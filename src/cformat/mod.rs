@@ -77,41 +77,79 @@ macro_rules! cformat {
     }};
 }
 
-
 #[cfg(test)]
 mod tests {
     use crate::{Color, Coloration};
 
     #[test]
-    fn test_cformat() {
-        let string = cformat!("Compiling", "main.rs" => Green);
+    fn cformat_title_message_color() {
+        let string = cformat!("Cleaning up", "the mess" => Green);
         let right = format!(
-            "{} {}",
-            "   Compiling".as_colored_title(Color::Green),
-            "main.rs"
+            "{}{} {}",
+            " ".repeat(12 - "Cleaning up".len()),
+            "Cleaning up".as_colored_title(Color::Green),
+            "the mess"
         );
-        assert_eq!(string, right);
+        assert_eq!(string, right.as_ref());
     }
 
     #[test]
-    fn test_cformat_with_spaces() {
-        let string = cformat!("Pre Build", "Parsing `main.rs`..." => Green);
+    fn cformat_title_message_rgb() {
+        let string = cformat!("Cleaning up", "the mess" => (0, 255, 0));
         let right = format!(
-            "{} {}",
-            "   Pre Build".as_colored_title(Color::Green),
-            "Parsing `main.rs`..."
+            "{}{} {}",
+            " ".repeat(12 - "Cleaning up".len()),
+            "Cleaning up".as_colored_title(Color::TrueColor { r: 0, g: 255, b: 0 }),
+            "the mess"
         );
-        assert_eq!(string, right);
+        assert_eq!(string, right.as_ref());
     }
 
     #[test]
-    fn test_cformat_with_carry_return_at_start() {
-        let string = cformat!("\rPre-Build parsing `main.rs`..." => (0, 255, 0));
+    fn cformat_title_message() {
+        let string = cformat!("Cleaning up", "the mess");
         let right = format!(
-            "\r{} {}",
-            "   Pre-Build".as_colored_title(Color::TrueColor { r: 0, g: 255, b: 0 }),
-            "parsing `main.rs`..."
+            "{}{} {}",
+            " ".repeat(12 - "Cleaning up".len()),
+            "Cleaning up".as_colored_title(Color::Green),
+            "the mess"
         );
-        assert_eq!(string, right);
+        assert_eq!(string, right.as_ref());
+    }
+
+    #[test]
+    fn cformat_message_color() {
+        let string = cformat!("Testing cformat!" => Green);
+        let right = format!(
+            "{}{} {}",
+            " ".repeat(12 - "Testing".len()),
+            "Testing".as_colored_title(Color::Green),
+            "cformat!"
+        );
+        assert_eq!(string, right.as_ref());
+    }
+
+    #[test]
+    fn cformat_message_rgb() {
+        let string = cformat!("Testing cformat!" => (0, 255, 0));
+        let right = format!(
+            "{}{} {}",
+            " ".repeat(12 - "Testing".len()),
+            "Testing".as_colored_title(Color::TrueColor { r: 0, g: 255, b: 0 }),
+            "cformat!"
+        );
+        assert_eq!(string, right.as_ref());
+    }
+
+    #[test]
+    fn cformat_message() {
+        let string = cformat!("Testing cformat!");
+        let right = format!(
+            "{}{} {}",
+            " ".repeat(12 - "Testing".len()),
+            "Testing".as_colored_title(Color::Green),
+            "cformat!"
+        );
+        assert_eq!(string, right.as_ref());
     }
 }

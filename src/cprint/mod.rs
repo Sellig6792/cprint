@@ -69,3 +69,37 @@ macro_rules! cprintln {
         println!("{}", $crate::cformat!($msg => Green))
     }};
 }
+
+// These tests are just to make sure the macros compile, so we only use the `cprint!` macro.
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn cprint_title_message_color() {
+        cprint!("Compiling", "main.rs" => Green);
+    }
+
+    #[test]
+    fn cprint_title_message_rgb() {
+        cprint!("Compiling", "main.rs" => (255, 0, 0));
+    }
+
+    #[test]
+    fn cprint_title_message() {
+        cprint!("Compiling", "main.rs");
+    }
+
+    #[test]
+    fn cprint_message_color() {
+        cprint!("Compiling main.rs" => Green);
+    }
+
+    #[test]
+    fn cprint_message_rgb() {
+        cprint!("Compiling main.rs" => (255, 0, 0));
+    }
+
+    #[test]
+    fn cprint_message() {
+        cprint!("Compiling main.rs");
+    }
+}
