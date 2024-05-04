@@ -1,3 +1,4 @@
+#![allow(path_statements)]
 //! **Cargo-like printing**
 //!
 //! Easily print beautiful formatted messages like Cargo does.
@@ -18,7 +19,9 @@
 //! - [`ceprint!`] and [`ceprintln!`] for printing to stderr.
 //! - [`cformat!`] for formatting a string.
 
-pub use coloration::{Color, Coloration};
+pub use colored::Color;
+
+pub use coloration::Coloration;
 
 #[doc(hidden)]
 pub mod coloration;

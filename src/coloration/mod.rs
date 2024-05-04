@@ -1,5 +1,4 @@
-use colored::{ColoredString, Colorize};
-pub use colored::Color;
+use colored::{Color, ColoredString, Colorize};
 
 /// Trait for coloration of text. [`Coloration<ColorType>`] is the type of the color you want to use. It can be a [`Color`] or a [`String`].
 pub trait Coloration<ColorType>
